@@ -16,7 +16,7 @@ public class Car {
     public Car(String manufacturer) {
         this.manufacturer = manufacturer;
     }
-
+//commit
     public Car(String manufacturer, String model, int productionYear, int engineCcm,
                String bodyColor, String bodyType, String plateNumber, String vinNumber,
                double buyPrice, double expectedCosts, double expectedProfit) {
