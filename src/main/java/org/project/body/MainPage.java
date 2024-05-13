@@ -1,15 +1,14 @@
 package org.project.body;
 
 import org.project.body.car_section.AddCarDialog;
+import org.project.body.car_section.CarListDialog;
+import org.project.vehicle_support.Car;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
+import java.util.List;
 
 public class MainPage extends JFrame{
 
@@ -25,12 +24,20 @@ public class MainPage extends JFrame{
             public void actionPerformed(ActionEvent e) {
 
                 AddCarDialog addCarDialog = new AddCarDialog(frame);
+
             }
         });
-        JMenuItem Carlist = new JMenuItem("Twoja flota");
+        JMenuItem carlist = new JMenuItem("Twoja flota");
+        carlist.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                CarListDialog carListDialog = new CarListDialog(frame);
+            }
+        });
+
         JMenuItem editCar = new JMenuItem("Edycja pojazdu");
         carsMenu.add(addCar);
-        carsMenu.add(Carlist);
+        carsMenu.add(carlist);
         carsMenu.add(editCar);
         menuBar.add(carsMenu);
 
