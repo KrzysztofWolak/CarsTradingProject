@@ -44,9 +44,10 @@ public class CarDatabaseConnection {
 
     }
 
-    public List carDbLoad () {
+    public List<Car> carDbLoad () {
         Session session = null;
         List carsList = null;
+        List titleList= null;
 
         try{
             session = sessionFactory.openSession();
@@ -63,8 +64,37 @@ public class CarDatabaseConnection {
         } finally {
             session.close();
         }
-        System.out.println("Cars load");
+        System.out.println("Cars loaded");
   return carsList;
+
+    }
+    public  Car carDbLoadAtPlateNum (String plateNum) {
+        Session session = null;
+        Car car = null;
+
+        try{
+            session = sessionFactory.openSession();
+            Transaction transaction = session.beginTransaction();
+
+            String hql = "FROM Car WHERE plateNumber = :plateNumber";
+
+            Query query = session.createQuery(hql);
+            query.setParameter("plateNumber", plateNum);
+            List result = query.list();
+            transaction.commit();
+
+            if (result.size() > 0) car = (Car)result.get(0);
+
+
+
+
+        }catch (Exception e){
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        System.out.println("Car loaded: " +car.getManufacturer());
+        return car;
 
     }
 }

@@ -2,6 +2,7 @@ package org.project.body;
 
 import org.project.body.car_section.AddCarDialog;
 import org.project.body.car_section.CarListDialog;
+import org.project.body.car_section.EditCarDialog;
 import org.project.vehicle_support.Car;
 
 import javax.swing.*;
@@ -36,6 +37,12 @@ public class MainPage extends JFrame{
         });
 
         JMenuItem editCar = new JMenuItem("Edycja pojazdu");
+        editCar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                EditCarDialog editCarDialog = new EditCarDialog(frame);
+            }
+        });
         carsMenu.add(addCar);
         carsMenu.add(carlist);
         carsMenu.add(editCar);

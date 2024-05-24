@@ -9,57 +9,41 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.List;
 
-public class AddCarDialog extends JFrame {
+import static org.project.body.car_section.AddCarDialog.textFieldConfig;
 
-    public static void textFieldConfig (JTextField field){
-        field.setHorizontalAlignment(SwingConstants.CENTER);
-        field.addMouseListener(new MouseListener() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                field.setText("");
-            }
+public class EditCarDialog {
 
-            @Override
-            public void mousePressed(MouseEvent e) {
+    public EditCarDialog(JFrame frame) {
+        Insets insets = new Insets(5, 30, 5, 30);
 
-            }
+        JDialog edit = new JDialog(frame, "Nowy    Pojazd", true);
 
-            @Override
-            public void mouseReleased(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mouseEntered(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-
-            }
-        });
-    }
-    public AddCarDialog (JFrame frame){
-        Insets insets = new Insets(5,30,5,30) ;
-
-        JDialog add = new JDialog(frame, "Nowy    Pojazd", true);
-
-        JLabel labelManufacturer = new JLabel("Podaj   dane   pojazdu:", SwingConstants.CENTER);
+        JLabel labelManufacturer = new JLabel("Wybierz    pojazd    z    listy:", SwingConstants.CENTER);
         labelManufacturer.setFont(new Font("Verdana", Font.PLAIN, 20));
 
         JLabel emptyLabel = new JLabel("                       ");
         emptyLabel.setFont(new Font("Verdana", Font.PLAIN, 20));
+
+        CarDatabaseConnection carDatabaseConnection = new CarDatabaseConnection();
+        List<Car> carsList = carDatabaseConnection.carDbLoad();
+
+
+
+
+
+
+
+
 
 
         JTextField manufacturer = new JTextField("marka", 18);
         textFieldConfig(manufacturer);
 
 
-        JTextField model = new JTextField("model",18);
+        JTextField model = new JTextField("model", 18);
         textFieldConfig(model);
-
 
 
         JTextField color = new JTextField("Kolor", 18);
@@ -68,19 +52,19 @@ public class AddCarDialog extends JFrame {
         JTextField productionYear = new JTextField("rok produkcji", 18);
         textFieldConfig(productionYear);
 
-        JTextField engineCcm = new JTextField("Pojemość silnika",18);
+        JTextField engineCcm = new JTextField("Pojemość silnika", 18);
         textFieldConfig(engineCcm);
 
-        JTextField bodyType = new JTextField("Rodzaj nadwozia",18);
+        JTextField bodyType = new JTextField("Rodzaj nadwozia", 18);
         textFieldConfig(bodyType);
 
-        JTextField plateNum = new JTextField("Numer rejestracyjny",18);
+        JTextField plateNum = new JTextField("Numer rejestracyjny", 18);
         textFieldConfig(plateNum);
 
-        JTextField vinNumber = new JTextField("Numer VIN",18);
+        JTextField vinNumber = new JTextField("Numer VIN", 18);
         textFieldConfig(vinNumber);
 
-        JTextField buyPrice = new JTextField("Cena zakupu",18);
+        JTextField buyPrice = new JTextField("Cena zakupu", 18);
         textFieldConfig(buyPrice);
 
         JLabel emptyLabel1 = new JLabel("                       ");
@@ -93,12 +77,12 @@ public class AddCarDialog extends JFrame {
         close.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                add.setVisible(false);
+                edit.setVisible(false);
             }
         });
 
         JButton saveButton = new JButton("Zapisz");
-       saveButton.setMargin(insets);
+        saveButton.setMargin(insets);
         saveButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -123,73 +107,70 @@ public class AddCarDialog extends JFrame {
                 exitButton.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        add.setVisible(false);
+                        edit.setVisible(false);
                     }
                 });
-                add.add(exitButton);
+                edit.add(exitButton);
             }
-
-
         });
 
 
 
 
-        add.setLayout(new GridBagLayout());
+        edit.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
-        add.setSize(300,500);
+        edit.setSize(500, 500);
 
         gbc.gridy = 0;
-        add.add(labelManufacturer,gbc);
+        edit.add(labelManufacturer, gbc);
 
         gbc.gridy = 1;
-        add.add(emptyLabel,gbc);
+        edit.add(emptyLabel, gbc);
 
         gbc.gridy = 2;
-        add.add(manufacturer,gbc);
+        edit.add(manufacturer, gbc);
 
         gbc.gridy = 3;
-        add.add(manufacturer,gbc);
+        edit.add(manufacturer, gbc);
 
         gbc.gridy = 4;
-        add.add(model,gbc);
+        edit.add(model, gbc);
 
         gbc.gridy = 5;
-        add.add(color,gbc);
+        edit.add(color, gbc);
 
         gbc.gridy = 6;
-        add.add(productionYear,gbc);
+        edit.add(productionYear, gbc);
 
         gbc.gridy = 7;
-        add.add(engineCcm,gbc);
+        edit.add(engineCcm, gbc);
 
         gbc.gridy = 8;
-        add.add(bodyType,gbc);
+        edit.add(bodyType, gbc);
 
         gbc.gridy = 9;
-        add.add(plateNum,gbc);
+        edit.add(plateNum, gbc);
 
         gbc.gridy = 10;
-        add.add(vinNumber,gbc);
+        edit.add(vinNumber, gbc);
 
         gbc.gridy = 11;
-        add.add(buyPrice,gbc);
+        edit.add(buyPrice, gbc);
 
         gbc.gridy = 12;
-        add.add(emptyLabel1,gbc);
+        edit.add(emptyLabel1, gbc);
 
         gbc.gridy = 13;
-        add.add(close,gbc);
+        edit.add(close, gbc);
 
         gbc.gridy = 14;
-        add.add(saveButton,gbc);
+        edit.add(saveButton, gbc);
 
+        edit.setLocationRelativeTo(null);
+        edit.setVisible(true);
 
-        add.setLocationRelativeTo(null);
-        add.setVisible(true);
 
 
 
     }
-
 }

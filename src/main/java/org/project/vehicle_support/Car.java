@@ -145,4 +145,19 @@ public class Car {
                 ", expectedProfit=" + expectedProfit +
                 '}';
     }
+
+
+    public void carLoadToTable (Car car,Car carLoad) {
+        car.setManufacturer(carLoad.manufacturer);
+        car.setModel(carLoad.model);
+        car.setPlateNumber(carLoad.plateNumber);
+        car.setBodyType(carLoad.bodyType);
+        car.setBodyColor(carLoad.bodyColor);
+        car.setVinNumber(carLoad.vinNumber);
+        car.setEngineCcm(carLoad.engineCcm);
+        car.setProductionYear(carLoad.productionYear);
+        car.setBuyPrice(carLoad.buyPrice);
+        car.setExpectedCosts(carLoad.expectedCosts);
+        car.setExpectedProfit(carLoad.expectedProfit);
+    }
 }
