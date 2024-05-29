@@ -46,26 +46,15 @@ public class CarListDialog extends JFrame {
         table.setShowHorizontalLines(true);
         table.setGridColor(Color.blue);
 
-        JButton edit = new JButton("Edit");
-        edit.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String getNumPlate = tableData[table.getSelectedRow()][2];
-                System.out.println(getNumPlate);
-                Car carToEdit = carDatabaseConnection.carDbLoadAtPlateNum(getNumPlate);
-                System.out.println(carToEdit.getManufacturer());
-
-            }
-        });
-
         JScrollPane pane = new JScrollPane(table);
-        pane.setPreferredSize(new Dimension(500,100));
+        pane.setPreferredSize(new Dimension(500,300));
 
-        carList.add(edit);
+
         carList.add(empty);
         carList.add(title);
         carList.add(pane);
         carList.pack();
+        carList.getContentPane().setBackground(new Color(240,248,255));
         carList.setLocationRelativeTo(frame);
         carList.setLayout(new FlowLayout());
         carList.setSize(600,500);

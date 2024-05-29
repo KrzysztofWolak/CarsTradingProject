@@ -55,33 +55,39 @@ public class AddCarDialog extends JFrame {
 
         JTextField manufacturer = new JTextField("marka", 18);
         textFieldConfig(manufacturer);
+        manufacturer.setToolTipText("marka");
 
-
-        JTextField model = new JTextField("model",18);
+        JTextField model = new JTextField("model", 18);
         textFieldConfig(model);
-
-
+        model.setToolTipText("model");
 
         JTextField color = new JTextField("Kolor", 18);
         textFieldConfig(color);
+        color.setToolTipText("kolor");
 
         JTextField productionYear = new JTextField("rok produkcji", 18);
         textFieldConfig(productionYear);
+        productionYear.setToolTipText("rok produkcji");
 
-        JTextField engineCcm = new JTextField("Pojemość silnika",18);
+        JTextField engineCcm = new JTextField("Pojemość silnika", 18);
         textFieldConfig(engineCcm);
+        engineCcm.setToolTipText("pojemość silnika");
 
-        JTextField bodyType = new JTextField("Rodzaj nadwozia",18);
+        JTextField bodyType = new JTextField("Rodzaj nadwozia", 18);
         textFieldConfig(bodyType);
+        bodyType.setToolTipText("rodzaj nadwozia");
 
-        JTextField plateNum = new JTextField("Numer rejestracyjny",18);
+        JTextField plateNum = new JTextField("Numer rejestracyjny", 18);
         textFieldConfig(plateNum);
+        plateNum.setToolTipText("Numer rejestracyjny");
 
-        JTextField vinNumber = new JTextField("Numer VIN",18);
+        JTextField vinNumber = new JTextField("Numer VIN", 18);
         textFieldConfig(vinNumber);
+        vinNumber.setToolTipText("Numer VIN");
 
-        JTextField buyPrice = new JTextField("Cena zakupu",18);
+        JTextField buyPrice = new JTextField("Cena zakupu", 18);
         textFieldConfig(buyPrice);
+        buyPrice.setToolTipText("cena zakupu");
 
         JLabel emptyLabel1 = new JLabel("                       ");
         emptyLabel1.setFont(new Font("Verdana", Font.PLAIN, 20));
@@ -133,8 +139,6 @@ public class AddCarDialog extends JFrame {
         });
 
 
-
-
         add.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
         add.setSize(300,500);
@@ -184,12 +188,9 @@ public class AddCarDialog extends JFrame {
         gbc.gridy = 14;
         add.add(saveButton,gbc);
 
-
+        add.getContentPane().setBackground(new Color(240,248,255));
         add.setLocationRelativeTo(null);
         add.setVisible(true);
 
-
-
     }
-
 }

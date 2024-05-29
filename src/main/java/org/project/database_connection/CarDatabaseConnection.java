@@ -10,11 +10,13 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.query.Query;
 import org.project.vehicle_support.Car;
 
+import javax.swing.*;
 import java.util.List;
 
 public class CarDatabaseConnection {
 
     private SessionFactory sessionFactory;
+
     public CarDatabaseConnection() {
         StandardServiceRegistry ssr = new StandardServiceRegistryBuilder()
                 .configure("hibernate.cfg.xml").build();
@@ -30,26 +32,34 @@ public class CarDatabaseConnection {
         Session session = null;
 
 
-        try{
-        session = sessionFactory.openSession();
-        Transaction transaction = session.beginTransaction();
-        session.save(car);
-        transaction.commit();
-        }catch (Exception e){
-        e.printStackTrace();
+        try {
+            session = sessionFactory.openSession();
+            Transaction transaction = session.beginTransaction();
+
+            Car carCheck = (Car) session.createQuery("FROM Car WHERE plateNumber = :plateNumber")
+                    .setParameter("plateNumber", car.getPlateNumber()).uniqueResult();;
+            if (carCheck == null) {
+                session.save(car);
+                System.out.println("Car saved");
+            } else {
+                //JOptionPane.showInputDialog(null,"Objekt o takim nr rej. istnieje",JOptionPane.PLAIN_MESSAGE);
+                System.out.println("Nie zapisano");
+            }
+            transaction.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
         } finally {
             session.close();
         }
-        System.out.println("Car saved");
+
 
     }
 
-    public List<Car> carDbLoad () {
+    public List<Car> carDbLoad() {
         Session session = null;
         List carsList = null;
-        List titleList= null;
 
-        try{
+        try {
             session = sessionFactory.openSession();
             Transaction transaction = session.beginTransaction();
 
@@ -59,20 +69,21 @@ public class CarDatabaseConnection {
             transaction.commit();
 
 
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         } finally {
             session.close();
         }
         System.out.println("Cars loaded");
-  return carsList;
+        return carsList;
 
     }
-    public  Car carDbLoadAtPlateNum (String plateNum) {
+
+    public Car carDbLoadAtPlateNum(String plateNum) {
         Session session = null;
         Car car = null;
 
-        try{
+        try {
             session = sessionFactory.openSession();
             Transaction transaction = session.beginTransaction();
 
@@ -81,20 +92,67 @@ public class CarDatabaseConnection {
             Query query = session.createQuery(hql);
             query.setParameter("plateNumber", plateNum);
             List result = query.list();
-            transaction.commit();
 
-            if (result.size() > 0) car = (Car)result.get(0);
+            if (result.size() > 0) car = (Car) result.get(0);
 
+        transaction.commit();
 
-
-
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         } finally {
             session.close();
         }
-        System.out.println("Car loaded: " +car.getManufacturer());
+        System.out.println("Car loaded: " + car.getManufacturer());
         return car;
 
     }
+
+    public void carDbUpdate(Car newCar, String numPlate) {
+        Session session = null;
+        Transaction transaction = null;
+        try {
+            session = sessionFactory.openSession();
+            transaction = session.beginTransaction();
+
+         Car car1 = (Car) session.createQuery("FROM Car WHERE plateNumber = :plateNumber")
+                 .setParameter("plateNumber", numPlate)
+                 .uniqueResult();
+         car1.changeCarParameter(car1,newCar);
+            session.update(car1);
+            transaction.commit();
+
+            System.out.println("New model: " + car1.getModel());
+            System.out.println("New year: " + car1.getProductionYear());  
+
+        } catch(Exception e) {
+            e.printStackTrace();
+            if(transaction != null) transaction.rollback();
+        } finally {
+            if(session != null) session.close();
+        }
+    }
+
+    public void carDbDelete(String numPlate) {
+        Session session = null;
+        Transaction transaction = null;
+        try {
+            session = sessionFactory.openSession();
+            transaction = session.beginTransaction();
+
+            Car car1 = (Car) session.createQuery("FROM Car WHERE plateNumber = :plateNumber")
+                    .setParameter("plateNumber", numPlate).uniqueResult();
+
+            session.delete(car1);
+            transaction.commit();
+
+
+
+        } catch(Exception e) {
+            e.printStackTrace();
+            if(transaction != null) transaction.rollback();
+        } finally {
+            if(session != null) session.close();
+        }
+    }
+
 }

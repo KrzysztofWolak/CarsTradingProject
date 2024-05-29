@@ -160,4 +160,16 @@ public class Car {
         car.setExpectedCosts(carLoad.expectedCosts);
         car.setExpectedProfit(carLoad.expectedProfit);
     }
+
+    public void changeCarParameter (Car oryginal, Car newParam) {
+        oryginal.setManufacturer(newParam.getManufacturer());
+        oryginal.setModel(newParam.getModel());
+        oryginal.setBodyColor(newParam.getBodyColor());
+        oryginal.setProductionYear(newParam.getProductionYear());
+        oryginal.setEngineCcm(newParam.getEngineCcm());
+        oryginal.setBodyType(newParam.getBodyType());
+        oryginal.setPlateNumber(newParam.getPlateNumber());
+        oryginal.setVinNumber(newParam.getVinNumber());
+        oryginal.setBuyPrice(newParam.getBuyPrice());
+    }
 }

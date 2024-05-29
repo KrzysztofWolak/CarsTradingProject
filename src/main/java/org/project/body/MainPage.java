@@ -15,9 +15,7 @@ public class MainPage extends JFrame{
 
     public MainPage() throws HeadlessException {
         JFrame frame = new JFrame("C a r s      T r a d i n g      H e l p e r");
-
         JMenuBar menuBar = new JMenuBar();
-
         JMenu carsMenu = new JMenu("Samochody");
         JMenuItem addCar = new JMenuItem("Nowy pojazd");
         addCar.addActionListener(new ActionListener() {
@@ -123,7 +121,6 @@ public class MainPage extends JFrame{
         frame.setSize(1000,750);
         frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);
-
         frame.add(background);
 
         frame.setVisible(true);
