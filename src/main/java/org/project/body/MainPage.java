@@ -1,15 +1,15 @@
 package org.project.body;
 
+import org.project.body.SaleOfferDialog.SaleOffer;
 import org.project.body.car_section.AddCarDialog;
 import org.project.body.car_section.CarListDialog;
 import org.project.body.car_section.EditCarDialog;
-import org.project.vehicle_support.Car;
+import org.project.document_creator.DocumentGenerator;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.List;
 
 public class MainPage extends JFrame{
 
@@ -103,6 +103,13 @@ public class MainPage extends JFrame{
         JMenu functions = new JMenu("Funkcje");
 
         JMenuItem salesOfferGen = new JMenuItem("Generuj ogłoszenie sprzedaży");
+        salesOfferGen.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                SaleOffer saleOffer = new SaleOffer(frame);
+
+            }
+        });
         functions.add(salesOfferGen);
         JMenu documents = new JMenu("Generuj dokumenty");
         JMenuItem vatInvoice = new JMenuItem("Faktura sprzedaży");

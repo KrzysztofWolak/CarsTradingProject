@@ -68,6 +68,10 @@ public class Car {
     public int getEngineCcm() {
         return engineCcm;
     }
+    public String getEngineCcmText() {
+        String engine = String.valueOf(engineCcm);
+        return engine;
+    }
 
     public void setEngineCcm(int engineCcm) {
         this.engineCcm = engineCcm;
