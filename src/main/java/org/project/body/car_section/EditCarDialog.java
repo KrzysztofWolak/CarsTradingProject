@@ -5,6 +5,7 @@ import org.project.vehicle_support.Car;
 
 import javax.swing.*;
 import javax.swing.plaf.ColorUIResource;
+import javax.swing.table.TableColumnModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -52,12 +53,19 @@ public class EditCarDialog {
         }
 
         JTable table = new JTable(tableData, columnNames);
-        table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+        TableColumnModel tcm = table.getColumnModel();
+        tcm.getColumn(0).setMinWidth(80);
+        tcm.getColumn(1).setMinWidth(80);
+        tcm.getColumn(2).setMinWidth(130);
+        tcm.getColumn(3).setMinWidth(80);
+        tcm.getColumn(4).setMinWidth(80);
+        tcm.getColumn(5).setMinWidth(180);
         table.setShowHorizontalLines(true);
         table.setGridColor(Color.blue);
 
         JScrollPane pane = new JScrollPane(table);
-        pane.setPreferredSize(new Dimension(500,200));
+        pane.setPreferredSize(new Dimension(600,300));
 
 
         JLabel emptyLabel2 = new JLabel("                                ");
@@ -105,6 +113,84 @@ public class EditCarDialog {
 
         JButton delete = new JButton("Usuń z bazy");
         delete.setMargin(insets);
+        JButton editButton = new JButton("Edit");
+        JButton close = new JButton("Anuluj");
+        close.setMargin(insets);
+        JButton exitButton = new JButton("Zamknij");
+        exitButton.setMargin(insets);
+        JButton saveButton = new JButton("Zapisz zmiany");
+        saveButton.setMargin(insets);
+
+
+        close.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                table.setEnabled(true);
+                table.setBackground(Color.WHITE);
+                saveButton.setEnabled(false);
+                delete.setEnabled(false);
+
+
+            }
+        });
+
+        editButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                carToEditNumPlate = tableData[table.getSelectedRow()][2];
+                table.setEnabled(false);
+                table.setBackground(Color.GRAY);
+                Car carToEdit = carDatabaseConnection.carDbLoadAtPlateNum(carToEditNumPlate);
+                System.out.println(carToEdit.getManufacturer());
+                manufacturer.setText(carToEdit.getManufacturer());
+                model.setText(carToEdit.getModel());
+                color.setText(carToEdit.getBodyColor());
+                productionYear.setText(String.valueOf(carToEdit.getProductionYear()));
+                engineCcm.setText(String.valueOf(carToEdit.getEngineCcm()));
+                bodyType.setText(carToEdit.getBodyType());
+                plateNum.setText(carToEdit.getPlateNumber());
+                vinNumber.setText(carToEdit.getVinNumber());
+                buyPrice.setText(String.valueOf(carToEdit.getBuyPrice()));
+                saveButton.setEnabled(true);
+                delete.setVisible(true);
+                delete.setEnabled(true);
+                close.setEnabled(true);
+            }
+        });
+        exitButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                edit.setVisible(false);
+            }
+        });
+
+        saveButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Car car = new Car();
+                car.setManufacturer(manufacturer.getText());
+                car.setModel(model.getText());
+                car.setBodyColor(color.getText());
+                car.setProductionYear(Integer.parseInt(productionYear.getText()));
+                car.setEngineCcm(Integer.parseInt(engineCcm.getText()));
+                car.setBodyType(bodyType.getText());
+                car.setPlateNumber(plateNum.getText());
+                car.setVinNumber(vinNumber.getText());
+                car.setBuyPrice(Double.parseDouble(buyPrice.getText()));
+
+                CarDatabaseConnection myDatabase = new CarDatabaseConnection();
+                myDatabase.carDbUpdate(car, carToEditNumPlate);
+
+                close.setEnabled(false);
+                delete.setEnabled(false);
+                saveButton.setEnabled(false);
+                exitButton.setVisible(true);
+
+            }
+        });
+
         delete.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -129,81 +215,6 @@ public class EditCarDialog {
                 }
             }
         });
-
-
-        JButton editButton = new JButton("Edit");
-        editButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-                carToEditNumPlate = tableData[table.getSelectedRow()][2];
-                table.setEnabled(false);
-                table.setBackground(Color.GRAY);
-                Car carToEdit = carDatabaseConnection.carDbLoadAtPlateNum(carToEditNumPlate);
-                System.out.println(carToEdit.getManufacturer());
-                manufacturer.setText(carToEdit.getManufacturer());
-                model.setText(carToEdit.getModel());
-                color.setText(carToEdit.getBodyColor());
-                productionYear.setText(String.valueOf(carToEdit.getProductionYear()));
-                engineCcm.setText(String.valueOf(carToEdit.getEngineCcm()));
-                bodyType.setText(carToEdit.getBodyType());
-                plateNum.setText(carToEdit.getPlateNumber());
-                vinNumber.setText(carToEdit.getVinNumber());
-                buyPrice.setText(String.valueOf(carToEdit.getBuyPrice()));
-
-                delete.setVisible(true);
-            }
-        });
-
-
-        JButton close = new JButton("Anuluj");
-        close.setMargin(insets);
-
-        close.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-                table.setEnabled(true);
-                table.setBackground(Color.WHITE);
-
-            }
-        });
-
-        JButton exitButton = new JButton("Zamknij");
-        exitButton.setMargin(insets);
-        exitButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                edit.setVisible(false);
-            }
-        });
-
-
-        JButton saveButton = new JButton("Zapisz zmiany");
-        saveButton.setMargin(insets);
-        saveButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Car car = new Car();
-                car.setManufacturer(manufacturer.getText());
-                car.setModel(model.getText());
-                car.setBodyColor(color.getText());
-                car.setProductionYear(Integer.parseInt(productionYear.getText()));
-                car.setEngineCcm(Integer.parseInt(engineCcm.getText()));
-                car.setBodyType(bodyType.getText());
-                car.setPlateNumber(plateNum.getText());
-                car.setVinNumber(vinNumber.getText());
-                car.setBuyPrice(Double.parseDouble(buyPrice.getText()));
-
-                CarDatabaseConnection myDatabase = new CarDatabaseConnection();
-                myDatabase.carDbUpdate(car, carToEditNumPlate);
-
-                close.setEnabled(false);
-               exitButton.setVisible(true);
-
-            }
-        });
-
 
         edit.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
@@ -271,7 +282,7 @@ public class EditCarDialog {
 
         edit.setLocationRelativeTo(frame);
         edit.getContentPane().setBackground(new Color(240,248,255));
-        edit.setSize(800,700);
+        edit.setSize(950,750);
         edit.setVisible(true);
     }
 }

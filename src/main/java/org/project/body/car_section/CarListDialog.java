@@ -5,6 +5,7 @@ import org.project.vehicle_support.Car;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -36,28 +37,34 @@ public class CarListDialog extends JFrame {
             tableData [i][5] = car.getVinNumber();
 
         }
-        JLabel empty = new JLabel("____________________", SwingConstants.CENTER);
+        JLabel empty = new JLabel("-------------------------------------------------", SwingConstants.CENTER);
         empty.setFont(new Font("Verdana", Font.PLAIN, 30));
-        JLabel title = new JLabel("Twoje pojazdy:", SwingConstants.CENTER);
-       title.setFont(new Font("Verdana", Font.PLAIN, 30));
+        JLabel title = new JLabel("Twoje   pojazdy:", SwingConstants.CENTER);
+       title.setFont(new Font("Verdana", Font.PLAIN, 35));
 
         JTable table = new JTable(tableData, columnNames);
-        table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+        TableColumnModel tcm = table.getColumnModel();
+        tcm.getColumn(0).setMinWidth(100);
+        tcm.getColumn(1).setMinWidth(100);
+        tcm.getColumn(2).setMinWidth(150);
+        tcm.getColumn(3).setMinWidth(100);
+        tcm.getColumn(4).setMinWidth(100);
+        tcm.getColumn(5).setMinWidth(200);
         table.setShowHorizontalLines(true);
         table.setGridColor(Color.blue);
 
         JScrollPane pane = new JScrollPane(table);
-        pane.setPreferredSize(new Dimension(500,300));
+        pane.setPreferredSize(new Dimension(750,300));
 
-
-        carList.add(empty);
         carList.add(title);
+        carList.add(empty);
         carList.add(pane);
         carList.pack();
         carList.getContentPane().setBackground(new Color(240,248,255));
-        carList.setLocationRelativeTo(frame);
+        carList.setLocationRelativeTo(null);
         carList.setLayout(new FlowLayout());
-        carList.setSize(600,500);
+        carList.setSize(950,700);
         carList.setVisible(true);
 
     }
