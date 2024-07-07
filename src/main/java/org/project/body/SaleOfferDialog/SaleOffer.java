@@ -116,10 +116,10 @@ public class SaleOffer {
         saleOfferDialog.add(price);
         saleOfferDialog.add(saleOfferGen);
         saleOfferDialog.add(close);
-        saleOfferDialog.setLocation(700,200);
         saleOfferDialog.getContentPane().setBackground(new Color(240,248,255));
         saleOfferDialog.setLayout(new FlowLayout());
-        saleOfferDialog.setSize(500,650);
+        saleOfferDialog.setSize(550,650);
+        saleOfferDialog.setLocationRelativeTo(null);
         saleOfferDialog.setVisible(true);
 
 

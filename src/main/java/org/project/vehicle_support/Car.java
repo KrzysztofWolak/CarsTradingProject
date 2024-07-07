@@ -2,6 +2,7 @@ package org.project.vehicle_support;
 
 import jakarta.persistence.*;
 
+
 @Entity
 @Table(name = "cars")
 public class Car {
@@ -20,10 +21,33 @@ public class Car {
     private double buyPrice;
     private double expectedCosts;
     private double expectedProfit;
+    private String insuranceTime;
+    private String techInspectionDate;
 
     public Car() {
     }
 
+
+
+    @Override
+    public String toString() {
+        return "Car{" +
+                "id=" + id +
+                ", manufacturer='" + manufacturer + '\'' +
+                ", model='" + model + '\'' +
+                ", productionYear=" + productionYear +
+                ", engineCcm=" + engineCcm +
+                ", bodyColor='" + bodyColor + '\'' +
+                ", bodyType='" + bodyType + '\'' +
+                ", plateNumber='" + plateNumber + '\'' +
+                ", vinNumber='" + vinNumber + '\'' +
+                ", buyPrice=" + buyPrice +
+                ", expectedCosts=" + expectedCosts +
+                ", expectedProfit=" + expectedProfit +
+                ", insuranceTime='" + insuranceTime + '\'' +
+                ", techInspectionDate='" + techInspectionDate + '\'' +
+                '}';
+    }
 
     public Car(String manufacturer, String model, int productionYear, int engineCcm,
                String bodyColor, String bodyType, String plateNumber, String vinNumber,
@@ -39,6 +63,15 @@ public class Car {
         this.buyPrice = buyPrice;
         this.expectedCosts = expectedCosts;
         this.expectedProfit = expectedProfit;
+    }
+
+
+    public String getInsuranceTime() {
+        return insuranceTime;
+    }
+
+    public void setInsuranceTime(String insuranceTime) {
+        this.insuranceTime = insuranceTime;
     }
 
     public String getManufacturer() {
@@ -67,10 +100,6 @@ public class Car {
 
     public int getEngineCcm() {
         return engineCcm;
-    }
-    public String getEngineCcmText() {
-        String engine = String.valueOf(engineCcm);
-        return engine;
     }
 
     public void setEngineCcm(int engineCcm) {
@@ -132,26 +161,15 @@ public class Car {
     public void setExpectedProfit(double expectedProfit) {
         this.expectedProfit = expectedProfit;
     }
-
-    @Override
-    public String toString() {
-        return "Car{" +
-                "manufacturer='" + manufacturer + '\'' +
-                ", model='" + model + '\'' +
-                ", productionYear=" + productionYear +
-                ", engineCcm=" + engineCcm +
-                ", bodyColor='" + bodyColor + '\'' +
-                ", bodyType='" + bodyType + '\'' +
-                ", plateNumber='" + plateNumber + '\'' +
-                ", vinNumber='" + vinNumber + '\'' +
-                ", buyPrice=" + buyPrice +
-                ", expectedCosts=" + expectedCosts +
-                ", expectedProfit=" + expectedProfit +
-                '}';
+    public String getTechInspectionDate() {
+        return techInspectionDate;
     }
 
+    public void setTechInspectionDate(String techInspectionDate) {
+        this.techInspectionDate = techInspectionDate;
+    }
 
-    public void carLoadToTable (Car car,Car carLoad) {
+    public void carLoadToTable (Car car, Car carLoad) {
         car.setManufacturer(carLoad.manufacturer);
         car.setModel(carLoad.model);
         car.setPlateNumber(carLoad.plateNumber);
@@ -163,6 +181,8 @@ public class Car {
         car.setBuyPrice(carLoad.buyPrice);
         car.setExpectedCosts(carLoad.expectedCosts);
         car.setExpectedProfit(carLoad.expectedProfit);
+        car.setInsuranceTime(carLoad.insuranceTime);
+        car.setTechInspectionDate(carLoad.techInspectionDate);
     }
 
     public void changeCarParameter (Car oryginal, Car newParam) {
@@ -175,5 +195,7 @@ public class Car {
         oryginal.setPlateNumber(newParam.getPlateNumber());
         oryginal.setVinNumber(newParam.getVinNumber());
         oryginal.setBuyPrice(newParam.getBuyPrice());
+        oryginal.setInsuranceTime(newParam.getInsuranceTime());
+        oryginal.setTechInspectionDate(newParam.getTechInspectionDate());
     }
 }

@@ -2,9 +2,9 @@ package org.project.body;
 
 import org.project.body.SaleOfferDialog.SaleOffer;
 import org.project.body.car_section.AddCarDialog;
-import org.project.body.car_section.CarListDialog;
+import org.project.body.car_section.CarsListDialog;
 import org.project.body.car_section.EditCarDialog;
-import org.project.document_creator.DocumentGenerator;
+import org.project.body.client_section.AddClientDialog;
 
 import javax.swing.*;
 import java.awt.*;
@@ -30,7 +30,7 @@ public class MainPage extends JFrame{
         carlist.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                CarListDialog carListDialog = new CarListDialog(frame);
+                CarsListDialog carListDialog = new CarsListDialog(frame);
             }
         });
 
@@ -48,6 +48,12 @@ public class MainPage extends JFrame{
 
         JMenu clientsMenu = new JMenu("Klienci");
         JMenuItem addClient = new JMenuItem("Nowy klient");
+        addClient.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                AddClientDialog addClientDialog = new AddClientDialog(frame);
+            }
+        });
         JMenuItem clientList = new JMenuItem("Lista Klientów");
         JMenuItem editClient = new JMenuItem("Edycja danych klienta");
         clientsMenu.add(addClient);
@@ -123,6 +129,10 @@ public class MainPage extends JFrame{
 
         JLabel background=new JLabel(new ImageIcon("C:\\Users\\Admin\\untitled2\\CarsTradingProject\\src\\main\\resources\\image\\bg.jpeg"));
 
+
+        DatesReminder reminder = new DatesReminder(frame);
+
+
         frame.setJMenuBar(menuBar);
         frame.setLayout(new FlowLayout());
         frame.setSize(1000,750);
@@ -131,6 +141,8 @@ public class MainPage extends JFrame{
         frame.add(background);
 
         frame.setVisible(true);
+
+
 
 
 

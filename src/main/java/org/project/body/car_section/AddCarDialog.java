@@ -89,6 +89,14 @@ public class AddCarDialog extends JFrame {
         textFieldConfig(buyPrice);
         buyPrice.setToolTipText("cena zakupu");
 
+        JTextField insuranceDate = new JTextField("Data ważności polisy OC", 18);
+        textFieldConfig(insuranceDate);
+        insuranceDate.setToolTipText("Data ważności polisy OC");
+
+        JTextField techInspectDate = new JTextField("Data ważności przeglądu", 18);
+        textFieldConfig(techInspectDate);
+        techInspectDate.setToolTipText("Data ważności przeglądu");
+
         JLabel emptyLabel1 = new JLabel("                       ");
         emptyLabel1.setFont(new Font("Verdana", Font.PLAIN, 20));
 
@@ -118,6 +126,8 @@ public class AddCarDialog extends JFrame {
                 car.setPlateNumber(plateNum.getText());
                 car.setVinNumber(vinNumber.getText());
                 car.setBuyPrice(Double.parseDouble(buyPrice.getText()));
+                car.setInsuranceTime(insuranceDate.getText());
+                car.setTechInspectionDate(techInspectDate.getText());
 
                 CarDatabaseConnection myDatabase = new CarDatabaseConnection();
                 myDatabase.carDbSave(car);
@@ -180,12 +190,18 @@ public class AddCarDialog extends JFrame {
         add.add(buyPrice,gbc);
 
         gbc.gridy = 12;
-        add.add(emptyLabel1,gbc);
+        add.add(insuranceDate,gbc);
 
         gbc.gridy = 13;
-        add.add(close,gbc);
+        add.add(techInspectDate,gbc);
 
         gbc.gridy = 14;
+        add.add(emptyLabel1,gbc);
+
+        gbc.gridy = 15;
+        add.add(close,gbc);
+
+        gbc.gridy = 16;
         add.add(saveButton,gbc);
 
         add.getContentPane().setBackground(new Color(240,248,255));

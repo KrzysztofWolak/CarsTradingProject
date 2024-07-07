@@ -4,17 +4,16 @@ import org.project.database_connection.CarDatabaseConnection;
 import org.project.vehicle_support.Car;
 
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
-public class CarListDialog extends JFrame {
+public class CarsListDialog extends JFrame {
 
 
-    public CarListDialog (JFrame frame) {
+    public CarsListDialog(JFrame frame) {
 
 
 
@@ -57,14 +56,25 @@ public class CarListDialog extends JFrame {
         JScrollPane pane = new JScrollPane(table);
         pane.setPreferredSize(new Dimension(750,300));
 
+
+        JButton dates = new JButton("SPRAWDŹ TERMINY POLISY I PRZEGLĄDU");
+        dates.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                DatesDialog datesDialog = new DatesDialog(carList);
+            }
+        });
+
+
         carList.add(title);
         carList.add(empty);
         carList.add(pane);
+        carList.add(dates);
         carList.pack();
         carList.getContentPane().setBackground(new Color(240,248,255));
-        carList.setLocationRelativeTo(null);
         carList.setLayout(new FlowLayout());
         carList.setSize(950,700);
+        carList.setLocationRelativeTo(null);
         carList.setVisible(true);
 
     }

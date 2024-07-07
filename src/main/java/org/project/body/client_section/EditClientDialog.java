@@ -1,10 +1,9 @@
-package org.project.body.car_section;
+package org.project.body.client_section;
 
 import org.project.database_connection.CarDatabaseConnection;
 import org.project.vehicle_support.Car;
 
 import javax.swing.*;
-import javax.swing.plaf.ColorUIResource;
 import javax.swing.table.TableColumnModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -13,12 +12,12 @@ import java.util.List;
 
 import static org.project.body.car_section.AddCarDialog.textFieldConfig;
 
-public class EditCarDialog {
+public class EditClientDialog {
 
 
     private String carToEditNumPlate = null;
 
-    public EditCarDialog(JFrame frame) {
+    public EditClientDialog(JFrame frame) {
 
 
         Insets insets = new Insets(5, 30, 5, 30);
