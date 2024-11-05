@@ -12,7 +12,7 @@ import java.awt.event.MouseListener;
 
 public class AddClientDialog extends JFrame {
 
-    public static void textFieldConfig (JTextField field){
+    public static void textFieldConfig(JTextField field) {
         field.setHorizontalAlignment(SwingConstants.CENTER);
         field.addMouseListener(new MouseListener() {
             @Override
@@ -41,8 +41,9 @@ public class AddClientDialog extends JFrame {
             }
         });
     }
-    public AddClientDialog(JFrame frame){
-        Insets insets = new Insets(5,30,5,30) ;
+
+    public AddClientDialog(JFrame frame) {
+        Insets insets = new Insets(5, 30, 5, 30);
 
         JDialog add = new JDialog(frame, "Nowy    Klient", true);
 
@@ -74,7 +75,6 @@ public class AddClientDialog extends JFrame {
         telephoneNumber.setToolTipText("pojemość silnika");
 
 
-
         JLabel emptyLabel1 = new JLabel("                       ");
         emptyLabel1.setFont(new Font("Verdana", Font.PLAIN, 20));
 
@@ -90,7 +90,7 @@ public class AddClientDialog extends JFrame {
         });
 
         JButton saveButton = new JButton("Zapisz");
-       saveButton.setMargin(insets);
+        saveButton.setMargin(insets);
         saveButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -124,42 +124,42 @@ public class AddClientDialog extends JFrame {
 
         add.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
-        add.setSize(300,500);
+        add.setSize(300, 500);
 
         gbc.gridy = 0;
-        add.add(labelManufacturer,gbc);
+        add.add(labelManufacturer, gbc);
 
         gbc.gridy = 1;
-        add.add(emptyLabel,gbc);
+        add.add(emptyLabel, gbc);
 
         gbc.gridy = 2;
-        add.add(name,gbc);
+        add.add(name, gbc);
 
         gbc.gridy = 3;
-        add.add(name,gbc);
+        add.add(name, gbc);
 
         gbc.gridy = 4;
-        add.add(surname,gbc);
+        add.add(surname, gbc);
 
         gbc.gridy = 5;
-        add.add(pesel,gbc);
+        add.add(pesel, gbc);
 
         gbc.gridy = 6;
-        add.add(address,gbc);
+        add.add(address, gbc);
 
         gbc.gridy = 7;
-        add.add(telephoneNumber,gbc);
+        add.add(telephoneNumber, gbc);
 
         gbc.gridy = 8;
-        add.add(emptyLabel1,gbc);
+        add.add(emptyLabel1, gbc);
 
         gbc.gridy = 9;
-        add.add(close,gbc);
+        add.add(close, gbc);
 
         gbc.gridy = 10;
-        add.add(saveButton,gbc);
+        add.add(saveButton, gbc);
 
-        add.getContentPane().setBackground(new Color(240,248,255));
+        add.getContentPane().setBackground(new Color(240, 248, 255));
         add.setLocationRelativeTo(null);
         add.setVisible(true);
 

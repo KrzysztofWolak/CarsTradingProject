@@ -27,8 +27,6 @@ public class Car {
     public Car() {
     }
 
-
-
     @Override
     public String toString() {
         return "Car{" +
@@ -161,6 +159,7 @@ public class Car {
     public void setExpectedProfit(double expectedProfit) {
         this.expectedProfit = expectedProfit;
     }
+
     public String getTechInspectionDate() {
         return techInspectionDate;
     }
@@ -169,7 +168,7 @@ public class Car {
         this.techInspectionDate = techInspectionDate;
     }
 
-    public void carLoadToTable (Car car, Car carLoad) {
+    public void carLoadToTable(Car car, Car carLoad) {
         car.setManufacturer(carLoad.manufacturer);
         car.setModel(carLoad.model);
         car.setPlateNumber(carLoad.plateNumber);
@@ -185,7 +184,7 @@ public class Car {
         car.setTechInspectionDate(carLoad.techInspectionDate);
     }
 
-    public void changeCarParameter (Car oryginal, Car newParam) {
+    public void changeCarParameter(Car oryginal, Car newParam) {
         oryginal.setManufacturer(newParam.getManufacturer());
         oryginal.setModel(newParam.getModel());
         oryginal.setBodyColor(newParam.getBodyColor());

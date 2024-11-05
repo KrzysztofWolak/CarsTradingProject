@@ -15,31 +15,28 @@ public class CarsListDialog extends JFrame {
 
     public CarsListDialog(JFrame frame) {
 
-
-
-
         CarDatabaseConnection carDatabaseConnection = new CarDatabaseConnection();
         List<Car> carsList = carDatabaseConnection.carDbLoad();
 
         JDialog carList = new JDialog(frame, "Lista   pojazdów", true);
-        String [] columnNames = {"Marka","Model","Numer rejestracyjny","Typ Nadwozia","Kolor", "Numer VIN"};
-        String [][] tableData = new String[carsList.size()][columnNames.length ];
+        String[] columnNames = {"Marka", "Model", "Numer rejestracyjny", "Typ Nadwozia", "Kolor", "Numer VIN"};
+        String[][] tableData = new String[carsList.size()][columnNames.length];
 
-        for (int i = 0; i < carsList.size() ; i++) {
+        for (int i = 0; i < carsList.size(); i++) {
             Car car = new Car();
             car.carLoadToTable(car, carsList.get(i));
-            tableData [i][0] = car.getManufacturer();
-            tableData [i][1] = car.getModel();
-            tableData [i][2] = car.getPlateNumber();
-            tableData [i][3] = car.getBodyType();
-            tableData [i][4] = car.getBodyColor();
-            tableData [i][5] = car.getVinNumber();
+            tableData[i][0] = car.getManufacturer();
+            tableData[i][1] = car.getModel();
+            tableData[i][2] = car.getPlateNumber();
+            tableData[i][3] = car.getBodyType();
+            tableData[i][4] = car.getBodyColor();
+            tableData[i][5] = car.getVinNumber();
 
         }
         JLabel empty = new JLabel("-------------------------------------------------", SwingConstants.CENTER);
         empty.setFont(new Font("Verdana", Font.PLAIN, 30));
         JLabel title = new JLabel("Twoje   pojazdy:", SwingConstants.CENTER);
-       title.setFont(new Font("Verdana", Font.PLAIN, 35));
+        title.setFont(new Font("Verdana", Font.PLAIN, 35));
 
         JTable table = new JTable(tableData, columnNames);
         table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
@@ -54,7 +51,7 @@ public class CarsListDialog extends JFrame {
         table.setGridColor(Color.blue);
 
         JScrollPane pane = new JScrollPane(table);
-        pane.setPreferredSize(new Dimension(750,300));
+        pane.setPreferredSize(new Dimension(750, 300));
 
 
         JButton dates = new JButton("SPRAWDŹ TERMINY POLISY I PRZEGLĄDU");
@@ -71,9 +68,9 @@ public class CarsListDialog extends JFrame {
         carList.add(pane);
         carList.add(dates);
         carList.pack();
-        carList.getContentPane().setBackground(new Color(240,248,255));
+        carList.getContentPane().setBackground(new Color(240, 248, 255));
         carList.setLayout(new FlowLayout());
-        carList.setSize(950,700);
+        carList.setSize(950, 700);
         carList.setLocationRelativeTo(null);
         carList.setVisible(true);
 

@@ -12,7 +12,7 @@ import java.awt.event.MouseListener;
 
 public class AddCarDialog extends JFrame {
 
-    public static void textFieldConfig (JTextField field){
+    public static void textFieldConfig(JTextField field) {
         field.setHorizontalAlignment(SwingConstants.CENTER);
         field.addMouseListener(new MouseListener() {
             @Override
@@ -41,8 +41,9 @@ public class AddCarDialog extends JFrame {
             }
         });
     }
-    public AddCarDialog (JFrame frame){
-        Insets insets = new Insets(5,30,5,30) ;
+
+    public AddCarDialog(JFrame frame) {
+        Insets insets = new Insets(5, 30, 5, 30);
 
         JDialog add = new JDialog(frame, "Nowy    Pojazd", true);
 
@@ -51,7 +52,6 @@ public class AddCarDialog extends JFrame {
 
         JLabel emptyLabel = new JLabel("                       ");
         emptyLabel.setFont(new Font("Verdana", Font.PLAIN, 20));
-
 
         JTextField manufacturer = new JTextField("marka", 18);
         textFieldConfig(manufacturer);
@@ -112,7 +112,7 @@ public class AddCarDialog extends JFrame {
         });
 
         JButton saveButton = new JButton("Zapisz");
-       saveButton.setMargin(insets);
+        saveButton.setMargin(insets);
         saveButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -151,60 +151,60 @@ public class AddCarDialog extends JFrame {
 
         add.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
-        add.setSize(300,500);
+        add.setSize(300, 500);
 
         gbc.gridy = 0;
-        add.add(labelManufacturer,gbc);
+        add.add(labelManufacturer, gbc);
 
         gbc.gridy = 1;
-        add.add(emptyLabel,gbc);
+        add.add(emptyLabel, gbc);
 
         gbc.gridy = 2;
-        add.add(manufacturer,gbc);
+        add.add(manufacturer, gbc);
 
         gbc.gridy = 3;
-        add.add(manufacturer,gbc);
+        add.add(manufacturer, gbc);
 
         gbc.gridy = 4;
-        add.add(model,gbc);
+        add.add(model, gbc);
 
         gbc.gridy = 5;
-        add.add(color,gbc);
+        add.add(color, gbc);
 
         gbc.gridy = 6;
-        add.add(productionYear,gbc);
+        add.add(productionYear, gbc);
 
         gbc.gridy = 7;
-        add.add(engineCcm,gbc);
+        add.add(engineCcm, gbc);
 
         gbc.gridy = 8;
-        add.add(bodyType,gbc);
+        add.add(bodyType, gbc);
 
         gbc.gridy = 9;
-        add.add(plateNum,gbc);
+        add.add(plateNum, gbc);
 
         gbc.gridy = 10;
-        add.add(vinNumber,gbc);
+        add.add(vinNumber, gbc);
 
         gbc.gridy = 11;
-        add.add(buyPrice,gbc);
+        add.add(buyPrice, gbc);
 
         gbc.gridy = 12;
-        add.add(insuranceDate,gbc);
+        add.add(insuranceDate, gbc);
 
         gbc.gridy = 13;
-        add.add(techInspectDate,gbc);
+        add.add(techInspectDate, gbc);
 
         gbc.gridy = 14;
-        add.add(emptyLabel1,gbc);
+        add.add(emptyLabel1, gbc);
 
         gbc.gridy = 15;
-        add.add(close,gbc);
+        add.add(close, gbc);
 
         gbc.gridy = 16;
-        add.add(saveButton,gbc);
+        add.add(saveButton, gbc);
 
-        add.getContentPane().setBackground(new Color(240,248,255));
+        add.getContentPane().setBackground(new Color(240, 248, 255));
         add.setLocationRelativeTo(null);
         add.setVisible(true);
 

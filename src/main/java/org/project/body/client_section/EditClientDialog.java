@@ -19,11 +19,10 @@ public class EditClientDialog {
 
     public EditClientDialog(JFrame frame) {
 
-
         Insets insets = new Insets(5, 30, 5, 30);
 
         JDialog edit = new JDialog(frame, "Edycja   pojazdu", true);
-        edit.setBackground(new Color(2, 7,5));
+        edit.setBackground(new Color(2, 7, 5));
 
         JLabel labelTitle = new JLabel("Wybierz    pojazd    z    tabeli:", SwingConstants.CENTER);
         labelTitle.setFont(new Font("Verdana", Font.PLAIN, 28));
@@ -35,18 +34,18 @@ public class EditClientDialog {
         CarDatabaseConnection carDatabaseConnection = new CarDatabaseConnection();
         List<Car> carsList = carDatabaseConnection.carDbLoad();
 
-        String [] columnNames = {"Marka","Model","Numer rejestracyjny","Typ Nadwozia","Kolor", "Numer VIN"};
-        String [][] tableData = new String[carsList.size()][columnNames.length ];
+        String[] columnNames = {"Marka", "Model", "Numer rejestracyjny", "Typ Nadwozia", "Kolor", "Numer VIN"};
+        String[][] tableData = new String[carsList.size()][columnNames.length];
 
-        for (int i = 0; i < carsList.size() ; i++) {
+        for (int i = 0; i < carsList.size(); i++) {
             Car car = new Car();
             car.carLoadToTable(car, carsList.get(i));
-            tableData [i][0] = car.getManufacturer();
-            tableData [i][1] = car.getModel();
-            tableData [i][2] = car.getPlateNumber();
-            tableData [i][3] = car.getBodyType();
-            tableData [i][4] = car.getBodyColor();
-            tableData [i][5] = car.getVinNumber();
+            tableData[i][0] = car.getManufacturer();
+            tableData[i][1] = car.getModel();
+            tableData[i][2] = car.getPlateNumber();
+            tableData[i][3] = car.getBodyType();
+            tableData[i][4] = car.getBodyColor();
+            tableData[i][5] = car.getVinNumber();
 
         }
 
@@ -63,7 +62,7 @@ public class EditClientDialog {
         table.setGridColor(Color.blue);
 
         JScrollPane pane = new JScrollPane(table);
-        pane.setPreferredSize(new Dimension(600,300));
+        pane.setPreferredSize(new Dimension(600, 300));
 
 
         JLabel emptyLabel2 = new JLabel("                                ");
@@ -205,7 +204,7 @@ public class EditClientDialog {
                         JOptionPane.YES_NO_OPTION
                 );
                 switch (result) {
-                    case JOptionPane.YES_NO_OPTION :
+                    case JOptionPane.YES_NO_OPTION:
                         carDatabaseConnection.carDbDelete(carToEditNumPlate);
                         break;
                     case JOptionPane.NO_OPTION:
@@ -219,8 +218,6 @@ public class EditClientDialog {
         edit.setSize(500, 500);
 
 
-
-
         gbc.gridy = 1;
         edit.add(labelTitle, gbc);
 
@@ -228,8 +225,8 @@ public class EditClientDialog {
         edit.add(emptyLabel, gbc);
 
         gbc.gridy = 3;
-        edit.add(pane,gbc);
-        edit.add(editButton,gbc);
+        edit.add(pane, gbc);
+        edit.add(editButton, gbc);
 
         gbc.gridy = 4;
         edit.add(emptyLabel2, gbc);
@@ -269,17 +266,17 @@ public class EditClientDialog {
 
         gbc.gridy = 16;
         delete.setVisible(false);
-        edit.add(delete,gbc);
+        edit.add(delete, gbc);
 
         gbc.gridy = 17;
-        edit.add(saveButton,gbc);
+        edit.add(saveButton, gbc);
 
         gbc.gridy = 18;
         exitButton.setVisible(false);
-        edit.add(exitButton,gbc);
+        edit.add(exitButton, gbc);
 
-        edit.getContentPane().setBackground(new Color(240,248,255));
-        edit.setSize(950,750);
+        edit.getContentPane().setBackground(new Color(240, 248, 255));
+        edit.setSize(950, 750);
         edit.setLocationRelativeTo(null);
         edit.setVisible(true);
     }

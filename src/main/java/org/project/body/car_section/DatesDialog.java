@@ -33,38 +33,38 @@ public class DatesDialog {
             tableData[i][6] = String.valueOf(DateClass.techInspectionDataRemaining(car));
         }
 
-            JLabel empty = new JLabel("-------------------------------------------------", SwingConstants.CENTER);
-            empty.setFont(new Font("Verdana", Font.PLAIN, 30));
-            JLabel title = new JLabel("Ważne  daty:", SwingConstants.CENTER);
-            title.setFont(new Font("Verdana", Font.PLAIN, 35));
+        JLabel empty = new JLabel("-------------------------------------------------", SwingConstants.CENTER);
+        empty.setFont(new Font("Verdana", Font.PLAIN, 30));
+        JLabel title = new JLabel("Ważne  daty:", SwingConstants.CENTER);
+        title.setFont(new Font("Verdana", Font.PLAIN, 35));
 
-            JTable table = new JTable(tableData, columnNames);
-            table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
-            TableColumnModel tcm = table.getColumnModel();
-            tcm.getColumn(0).setMinWidth(80);
-            tcm.getColumn(1).setMinWidth(80);
-            tcm.getColumn(2).setMinWidth(120);
-            tcm.getColumn(3).setMinWidth(100);
-            tcm.getColumn(4).setMinWidth(130);
-            tcm.getColumn(5).setMinWidth(100);
-            tcm.getColumn(6).setMinWidth(130);
+        JTable table = new JTable(tableData, columnNames);
+        table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+        TableColumnModel tcm = table.getColumnModel();
+        tcm.getColumn(0).setMinWidth(80);
+        tcm.getColumn(1).setMinWidth(80);
+        tcm.getColumn(2).setMinWidth(120);
+        tcm.getColumn(3).setMinWidth(100);
+        tcm.getColumn(4).setMinWidth(130);
+        tcm.getColumn(5).setMinWidth(100);
+        tcm.getColumn(6).setMinWidth(130);
 
 
-            table.setShowHorizontalLines(true);
-            table.setGridColor(Color.blue);
-            JScrollPane pane = new JScrollPane(table);
-            pane.setPreferredSize(new Dimension(900, 300));
+        table.setShowHorizontalLines(true);
+        table.setGridColor(Color.blue);
+        JScrollPane pane = new JScrollPane(table);
+        pane.setPreferredSize(new Dimension(900, 300));
 
-            datesDialog.add(title);
-            datesDialog.add(empty);
-            datesDialog.add(pane);
-            datesDialog.pack();
-            datesDialog.getContentPane().setBackground(new Color(240, 248, 255));
-            datesDialog.setLayout(new FlowLayout());
-            datesDialog.setSize(1050, 500);
-            datesDialog.setLocationRelativeTo(null);
-            datesDialog.setVisible(true);
+        datesDialog.add(title);
+        datesDialog.add(empty);
+        datesDialog.add(pane);
+        datesDialog.pack();
+        datesDialog.getContentPane().setBackground(new Color(240, 248, 255));
+        datesDialog.setLayout(new FlowLayout());
+        datesDialog.setSize(1050, 500);
+        datesDialog.setLocationRelativeTo(null);
+        datesDialog.setVisible(true);
 
-        }
     }
+}
 
