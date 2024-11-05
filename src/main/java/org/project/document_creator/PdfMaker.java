@@ -4,21 +4,17 @@ import org.apache.commons.text.WordUtils;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
-import org.apache.pdfbox.pdmodel.font.PDFont;
-import org.apache.pdfbox.pdmodel.font.PDTrueTypeFont;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
-import org.apache.pdfbox.pdmodel.font.Standard14Fonts;
 import org.project.vehicle_support.Car;
 
-import java.awt.*;
 import java.util.Calendar;
 
 import static org.apache.pdfbox.pdmodel.font.Standard14Fonts.FontName.*;
 
 
-public class DocumentGenerator{
+public class PdfMaker {
 
-    public DocumentGenerator() {
+    public PdfMaker() {
     }
 
     public void createSaleOffer (Car car, String cena) throws Exception {

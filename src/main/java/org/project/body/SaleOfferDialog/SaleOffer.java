@@ -1,11 +1,10 @@
 package org.project.body.SaleOfferDialog;
 
 import org.project.database_connection.CarDatabaseConnection;
-import org.project.document_creator.DocumentGenerator;
+import org.project.document_creator.PdfMaker;
 import org.project.vehicle_support.Car;
 
 import javax.swing.*;
-import javax.swing.plaf.FontUIResource;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -100,7 +99,7 @@ public class SaleOffer {
                 CarDatabaseConnection connection = new CarDatabaseConnection();
                 carToEditNumPlate = tableData[table.getSelectedRow()][2];
                 Car car = connection.carDbLoadAtPlateNum(carToEditNumPlate);
-                DocumentGenerator dg = new DocumentGenerator();
+                PdfMaker dg = new PdfMaker();
                 try {
                     dg.createSaleOffer(car, price.getText());
                 } catch (Exception ex) {
